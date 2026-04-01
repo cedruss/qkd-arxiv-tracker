@@ -28,12 +28,11 @@ jobs:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: python qkd_tracker.py
 
-     - name: Commit and Push the MD file
+      - name: Commit and Push the MD file
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add *.md
-          # 检查是否有新生成的 md 文件，如果有就保存并推送到当前网页上
           if ! git diff-index --quiet HEAD; then
             git commit -m "Add new QKD report MD file"
             git pull --rebase origin main  # <--- 注意：加上这一行
