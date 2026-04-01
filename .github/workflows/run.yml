@@ -1,21 +1,21 @@
 name: Generate QKD Report MD
 
 on:
-  workflow_dispatch: # 这个神奇的配置允许你在网页上手动点按钮运行！
+  workflow_dispatch:
   schedule:
-    - cron: '0 1 * * 1' # 保留每周一自动运行一次的兜底功能
+    - cron: '0 1 * * 1'
 
 jobs:
   build-and-commit:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 给予云电脑把你生成的 md 文件写回仓库的权限
+      contents: write
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # <--- 加上这一行，获取完整历史记录
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
